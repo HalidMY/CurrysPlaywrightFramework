@@ -28,4 +28,35 @@ export default class CookieHandler{
             await this.allowEssentialCookiesOnlyButton.click();
         }
     }
+
+    /**
+     * @description This method clicks reject button to reject cookies
+     */
+    async clickRejectAllButton(){
+        if (await this.rejectAllButton.isVisible()){
+            await this.rejectAllButton.click();
+        }
+    }
+
+    /**
+     * @description This method clicks manage cookies button and selects the cookies
+     */
+     async clickAndManageCookies(preferences = []) {
+        if (await this.manageCookiesLink.isVisible()) {
+            await this.manageCookiesLink.click();
+        }
+    
+        for (const choice of preferences) {
+            const toggleLabel = this.page.locator(`//span[text()='${choice}']/ancestor::label[contains(@class, 'ot-switch')]`);
+            try {
+                await toggleLabel.click({ timeout: 5000 });
+            } catch (e) {
+                console.warn(`Toggle for "${choice}" not found or not visible`);
+            }
+        }
+    
+        if (await this.confirmMyChoices.isVisible()) {
+            await this.confirmMyChoices.click();
+        }
+    }    
 }
