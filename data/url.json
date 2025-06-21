@@ -1,0 +1,7 @@
+{
+    "prod":{
+        "currys": {
+            "baseUrl": "https://www.currys.co.uk/"
+        }
+    }
+}
