@@ -1,0 +1,29 @@
+{
+    "phones": {
+        "Apple" : {
+            "phones" : [
+                "iPhone 16",
+                "iPhone 16 Pro",
+                "iPhone 16 Pro Max",
+                "iPhone 15",
+                "iPhone 15 Pro",
+                "iPhone 15 Pro Max"
+            ],
+            "laptops" : [
+                "APPLE MacBook Air 13.6 (2025)",
+                "APPLE MacBook Air 15 (2025)",
+                "APPLE MacBook Pro 14 (2024)",
+                "APPLE MacBook Pro 16 (2024)"
+            ],
+            "tablets" : [
+                "APPLE 8.3 iPad mini (2024)",
+                "APPLE 11 iPad (2025)",
+                "APPLE 11 iPad Air (2025)",
+                "APPLE 13 iPad Air (2025)",
+                "APPLE 11 iPad Pro (2024)",
+                "APPLE 13 iPad Pro (2024)"
+            ]
+                
+        }
+    }
+}

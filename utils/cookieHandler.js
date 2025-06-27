@@ -40,6 +40,7 @@ export default class CookieHandler{
 
     /**
      * @description This method clicks manage cookies button and selects the cookies
+     * @param {Array<string>} preferences - List of cookie preferences to manage
      */
      async clickAndManageCookies(preferences = []) {
         if (await this.manageCookiesLink.isVisible()) {
