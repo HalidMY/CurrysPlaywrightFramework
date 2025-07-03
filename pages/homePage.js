@@ -20,5 +20,6 @@ export default class HomePage extends BasePage{
   async searchForItem(item){
     console.log(`Searching for the ${item}`)
     await this.fillInput(this.searchInput, item);
+    await this.searchButton.click();
   }
 }
