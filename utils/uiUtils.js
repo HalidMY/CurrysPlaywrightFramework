@@ -1,3 +1,5 @@
+import { expect } from '@playwright/test';
+import urls from '../data/url.json';
 export default class UIUtils {
 
   // Action methods
@@ -14,5 +16,13 @@ export default class UIUtils {
 
   // Validation methods
 
-  
+  /**
+   * Asserts that the current page is the Currys search results page by URL.
+   * @param {import('@playwright/test').Page} page - The Playwright page object.
+   */
+  static async validateCurrysSearchResultsPage(page) {
+    const url = page.url();
+    expect(url.startsWith(urls.prod.currys.searchResultsUrl)).toBe(true);
+  }
+
 }

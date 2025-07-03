@@ -1,7 +1,8 @@
 {
     "prod":{
         "currys": {
-            "baseUrl": "https://www.currys.co.uk/"
+            "baseUrl": "https://www.currys.co.uk/",
+            "searchResultsUrl": "https://www.currys.co.uk/search"
         }
     }
 }
