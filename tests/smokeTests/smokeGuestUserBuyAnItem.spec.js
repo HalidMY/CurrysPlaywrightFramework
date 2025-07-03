@@ -23,5 +23,7 @@ test.describe("End2end: Guest user buys an item", () => {
     console.log("When the user search for Apple iPhone 16 pro max");
     await pages.homePage.searchForItem(item.brands.Apple.phones[2]);
     await UIUtils.validateCurrysSearchResultsPage(pages.searchResultsPage.page);
+    await pages.searchResultsPage.clickFirstAddToCartButton();
+    await pages.searchResultsPage.validateItemAddedToCart();
   });
 });
