@@ -1,14 +1,16 @@
-export default class SearchResultsPage {
+import BasePage from "./basePage";
+import { expect } from "@playwright/test";
+import urls from "../data/url.json";
+export default class SearchResultsPage extends BasePage {
   /**
    * @param {import('@playwright/test').Page} page
    */
   constructor(page) {
-    this.page = page;
+    super(page);
     // Locators
     this.addToCartButtons = page.locator('[class="addToCartActionButton"]');
     this.addedToBasketMessage = page.locator("#addToBasketModalLabel");
     this.goToBasketButton = page.locator('a[class$="goto-basket"]');
-    this.yourBasketText = page.locator('h2[class^="number-of-items"]');
   }
 
   // Actions
@@ -21,10 +23,27 @@ export default class SearchResultsPage {
       "Clicking the first 'Add to Cart' button on the search results page"
     );
     const firstButton = this.addToCartButtons.first();
-    await firstButton.click();
+    await this.clickElement(firstButton);
+  }
+
+  /**
+   * @description This method clicks the 'Go to Basket' button after an item has been added to the cart.
+   */
+  async clickGoToBasketButton() {
+    console.log("Clicking the 'Go to Basket' button");
+    await this.clickElement(this.goToBasketButton);
   }
 
   // Validations
+
+  /**
+   * Asserts that the current page is the Currys search results page by URL.
+   * @param {import('@playwright/test').Page} page - The Playwright page object.
+   */
+  async validateCurrysSearchResultsPage(page) {
+    const url = page.url();
+    expect(url.startsWith(urls.prod.currys.searchResultsUrl)).toBe(true);
+  }
 
   /**
    * @description This method validates that the item has been added to the cart by checking for
@@ -38,23 +57,6 @@ export default class SearchResultsPage {
         return true;
       } else {
         console.error("Item was not added to the cart.");
-        return false;
-      }
-    });
-  }
-
-  /**
-   * @description This method validates that the 'Your Basket' page is displayed after adding an item to the cart.
-   * @returns {Promise<boolean>} - Returns true if the 'Your Basket' page is displayed, otherwise false.
-   */
-  async validateYourBasketPage() {
-    console.log("Validating that the 'Your Basket' page is displayed");
-    return await this.yourBasketText.isVisible().then((isVisible) => {
-      if (isVisible) {
-        console.log("'Your Basket' page is displayed.");
-        return true;
-      } else {
-        console.error("'Your Basket' page is not displayed.");
         return false;
       }
     });
