@@ -10,6 +10,9 @@ export default class YourBasketPage extends BasePage {
     this.yourBasketText = page.locator('h2[class^="number-of-items"]');
     this.checkoutButton = page.locator('[class^="checkout-button"] > a');
     this.loginIframe = page.frameLocator("#login-iframe");
+    this.continueAsGuestButton = page.locator('[class$="container-guest-mTop"]');
+    this.guestEmailInput = page.locator('#guest-email-div-accessid');
+    this.guestButton = page.locator('#guest-btn-accessid');
   }
 
   // Actions
@@ -20,6 +23,16 @@ export default class YourBasketPage extends BasePage {
   async clickCheckoutButton() {
     console.log("Clicking the 'Checkout' button");
     await this.clickElement(this.checkoutButton);
+  }
+
+  /**
+   * @description This method clicks the 'Continue as Guest' button in the login iframe and fills in the guest email input.
+   * @param {String} userEmail 
+   */
+  async clickContinueAsGuestButton(userEmail) {
+    console.log("Clicking the 'Continue as Guest' button");
+    await this.clickElement(this.loginIframe.locator(this.guestEmailInput).fill(userEmail));
+    await this.clickElement(this.loginIframe.locator(this.guestButton).click());
   }
 
   // Validations
