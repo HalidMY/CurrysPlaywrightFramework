@@ -31,8 +31,8 @@ export default class YourBasketPage extends BasePage {
    */
   async clickContinueAsGuestButton(userEmail) {
     console.log("Clicking the 'Continue as Guest' button");
-    await this.clickElement(this.loginIframe.locator(this.guestEmailInput).fill(userEmail));
-    await this.clickElement(this.loginIframe.locator(this.guestButton).click());
+    await this.loginIframe.locator(this.guestEmailInput).fill(userEmail);
+    await this.clickElement(this.loginIframe.locator(this.guestButton));
   }
 
   // Validations
