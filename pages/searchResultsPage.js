@@ -41,7 +41,7 @@ export default class SearchResultsPage extends BasePage {
    * @param {import('@playwright/test').Page} page - The Playwright page object.
    */
   async validateCurrysSearchResultsPage(page) {
-    const url = page.url();
+    const url = this.getUrl(page);
     expect(url.startsWith(urls.prod.currys.searchResultsUrl)).toBe(true);
   }
 

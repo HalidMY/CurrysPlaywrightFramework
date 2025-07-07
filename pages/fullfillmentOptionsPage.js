@@ -1,4 +1,6 @@
+import { expect } from 'playwright/test';
 import BasePage from './basePage';
+import urls from '../data/url.json';
 
 export default class FullfillmentOptionsPage extends BasePage {
     /**
@@ -60,5 +62,16 @@ export default class FullfillmentOptionsPage extends BasePage {
         await this.clickCheckPostCodeButton();
         await this.selectRegularDeliveryOption();
         await this.clickContinueAsGuestButton();
+    }
+
+    // Validations
+
+    /**
+     * @description This method validates that the Fulfillment Options page is displayed.
+     */
+    async validateFulfillmentOptionsPage() {
+        console.log("Validating Fulfillment Options page URL:", url);
+        const url = await this.getUrl(this.page);
+        expect(url.startsWith(urls.prod.currys.fullFillmentOptionsUrl)).toBe(true);
     }
 }

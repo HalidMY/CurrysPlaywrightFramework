@@ -6,14 +6,18 @@ import HomePage from "../../pages/homePage.js";
 import item from "../../data/searchItems.json";
 import SearchResultsPage from "../../pages/searchResultsPage.js";
 import YourBasketPage from "../../pages/yourBasketPage.js";
+import FullfillmentOptionsPage from "../../pages/fullfillmentOptionsPage.js";
+import Constants from "../../utils/constants.js";
 
 test.describe("End2end: Guest user buys an item", () => {
   test("Test that guest user can buy an item", async ({ page }) => {
     const pages = {
+      constants: new Constants() ,
       cookieHandler: new CookieHandler(page),
       homePage: new HomePage(page),
       searchResultsPage: new SearchResultsPage(page),
       yourbasketPage: new YourBasketPage(page),
+      fullfillmentOptionsPage: new FullfillmentOptionsPage(page),
     };
 
     console.log(
@@ -40,5 +44,13 @@ test.describe("End2end: Guest user buys an item", () => {
     console.log('When the user clicks on the "Checkout" button and the login iframe should be displayed');
     await pages.yourbasketPage.clickCheckoutButton();
     await pages.yourbasketPage.validateIframeIsDisplayed();
+
+    console.log('When the user clicks on the "Continue as Guest" button');
+    await pages.yourbasketPage.clickContinueAsGuestButton(Constants.GUEST_USER_EMAIL);
+
+    console.log('Then the user should be redirected to the "Fulfillment Options" page');
+    await pages.fullfillmentOptionsPage.validateFulfillmentOptionsPage();
+    await pages.fullfillmentOptionsPage.searchAndEnterPostCodeAndContinueAsGuest("EC1A 1BB");
+  
   });
 });

@@ -52,6 +52,15 @@ export default class BasePage{
     await this.waitForElement(locator);
     return locator.textContent();
   }
-  
+
+  /**
+   * @description This method retrieves the URL of the current page
+   * @param {import('@playwright/test').Page} page The Playwright page object
+   * @returns {Promise<String>} The URL of the current page
+   */
+  async getUrl(page) {
+    console.log('Getting page\'s URL');
+    return page.url();
+  }
 
 }

@@ -2,7 +2,8 @@
     "prod":{
         "currys": {
             "baseUrl": "https://www.currys.co.uk/",
-            "searchResultsUrl": "https://www.currys.co.uk/search"
+            "searchResultsUrl": "https://www.currys.co.uk/search",
+            "fullFillmentOptionsUrl": "https://www.currys.co.uk/app/basket?stage=fulfillmentOptions#fulfillmentOptions"
         }
     }
 }
