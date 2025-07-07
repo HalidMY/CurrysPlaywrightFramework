@@ -49,7 +49,7 @@ test.describe("End2end: Guest user buys an item", () => {
     await pages.yourbasketPage.clickContinueAsGuestButton(Constants.GUEST_USER_EMAIL);
 
     console.log('Then the user should be redirected to the "Fulfillment Options" page');
-    await pages.fullfillmentOptionsPage.validateFulfillmentOptionsPage();
+    await pages.fullfillmentOptionsPage.validateFulfillmentOptionsPage(pages.fullfillmentOptionsPage.page);
     await pages.fullfillmentOptionsPage.searchAndEnterPostCodeAndContinueAsGuest("EC1A 1BB");
   
   });

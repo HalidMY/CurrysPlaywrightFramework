@@ -1,5 +1,4 @@
 import BasePage from "./basePage";
-import { expect } from "@playwright/test";
 import urls from "../data/url.json";
 export default class SearchResultsPage extends BasePage {
   /**
@@ -41,8 +40,7 @@ export default class SearchResultsPage extends BasePage {
    * @param {import('@playwright/test').Page} page - The Playwright page object.
    */
   async validateCurrysSearchResultsPage(page) {
-    const url = this.getUrl(page);
-    expect(url.startsWith(urls.prod.currys.searchResultsUrl)).toBe(true);
+    this.validatePageUrl(page, urls.prod.currys.searchResultsUrl);
   }
 
   /**

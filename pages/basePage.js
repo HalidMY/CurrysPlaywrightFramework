@@ -6,6 +6,8 @@ export default class BasePage{
     this.page = page;
   }
 
+  // Actions
+
   /**
    * @description This method returns page's title
    * @return {Promise<String>} The title of the page
@@ -63,4 +65,18 @@ export default class BasePage{
     return page.url();
   }
 
+  // Validations
+
+  /**
+   * @description This method validates that the current page's URL starts with the expected URL
+   * @param {import('@playwright/test').Page} page The Playwright page object
+   * @param {String} expectedUrl The expected URL to validate against
+   */
+  async validatePageUrl(page, expectedUrl) {
+    const url = await this.getUrl(page);
+    console.log(`Validating page URL: ${url}`);
+    if (!url.startsWith(expectedUrl)) {
+      throw new Error(`Expected URL to start with ${expectedUrl}, but got ${url}`);
+    }
+  }
 }
