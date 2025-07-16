@@ -8,6 +8,8 @@ import SearchResultsPage from "../../pages/searchResultsPage.js";
 import YourBasketPage from "../../pages/yourBasketPage.js";
 import FullfillmentOptionsPage from "../../pages/fullfillmentOptionsPage.js";
 import Constants from "../../utils/constants.js";
+import PaymentPage from "../../pages/paymentPage.js";
+import Cards from "./../../utils/card.js";
 
 test.describe("End2end: Guest user buys an item", () => {
   test("Test that guest user can buy an item", async ({ page }) => {
@@ -18,6 +20,7 @@ test.describe("End2end: Guest user buys an item", () => {
       searchResultsPage: new SearchResultsPage(page),
       yourbasketPage: new YourBasketPage(page),
       fullfillmentOptionsPage: new FullfillmentOptionsPage(page),
+      paymentPage: new PaymentPage(page)
     };
 
     console.log(
@@ -60,6 +63,19 @@ test.describe("End2end: Guest user buys an item", () => {
       addressLine1: Constants.GUEST_USER_ADDRESS_LINE_1,
       townOrCity: Constants.GUEST_USER_TOWN_OR_CITY
     });
-  
+
+    console.log('Then the user should be redirected to the payment page');
+    await pages.fullfillmentOptionsPage.clickPaymentButton();
+    await pages.paymentPage.validatePaymentIframeIsDisplayed();
+
+    console.log('When the user fills in the payment details and clicks the "Make Payment" button');
+    await pages.paymentPage.fillPaymentDetailsAndMakePayment({
+      cardNumber: Cards.CARD1.cardNumber,
+      expiryMonth: Cards.CARD1.expiryMonth,
+      expiryYear: Cards.CARD1.expiryYear,
+      cardHolderName: Cards.CARD1.cardHolderName,
+      cardCvv: Cards.CARD1.cvv
+  });
+
   });
 });

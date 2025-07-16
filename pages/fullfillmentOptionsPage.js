@@ -27,6 +27,7 @@ export default class FullfillmentOptionsPage extends BasePage {
     this.addressline1Input = page.locator('#shippingAddressOnedefault');
     this.townOrCityInput = page.locator('#shippingTownOrCitydefault');
     this.continuePaymentButton = page.locator('button[class$="submit-shipping"]');
+    this.paymentButton = page.locator('[class="payment-method-content"] button[class*="submit-payment"]');
   }
 
   // Actions
@@ -159,6 +160,14 @@ export default class FullfillmentOptionsPage extends BasePage {
     await this.enterAddressLine1(addressLine1);
     await this.enterTownOrCity(townOrCity);
     await this.clickContinuePaymentButton();
+  }
+
+  /**
+   * @description This method clicks the payment button to proceed with the payment.
+   */
+  async clickPaymentButton() {
+    console.log("Clicking the payment button");
+    await this.clickElement(this.paymentButton);
   }
 
   // Validations
