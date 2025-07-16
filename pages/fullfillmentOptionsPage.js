@@ -21,6 +21,12 @@ export default class FullfillmentOptionsPage extends BasePage {
     this.selectTitleDropdown = page.locator(
       '[data-select2-id="16"] select~span'
     );
+    this.firstNameInput = page.locator('#shippingFirstNamedefault');
+    this.lastNameInput = page.locator('#shippingLastNamedefault');
+    this.phoneNumberInput = page.locator('#shippingPhoneNumberdefault');
+    this.addressline1Input = page.locator('#shippingAddressOnedefault');
+    this.townOrCityInput = page.locator('#shippingTownOrCitydefault');
+    this.continuePaymentButton = page.locator('button[class$="submit-shipping"]');
   }
 
   // Actions
@@ -82,6 +88,77 @@ export default class FullfillmentOptionsPage extends BasePage {
     await this.clickElement(this.selectTitleDropdown);
     const option = page.locator(`option[value="${title}"]`);
     await this.clickElement(option);
+  }
+
+  /**
+   * @description This method fills the first name input field.
+   * @param {String} firstName 
+   */
+  async enterFirstName(firstName) {
+    console.log("Entering first name:", firstName);
+    await this.fillInput(this.firstNameInput, firstName);
+  }
+
+  /**
+   * @description This method fills the last name input field.
+   * @param {String} lastName 
+   */
+  async enterLastName(lastName) {
+    console.log("Entering last name:", lastName);
+    await this.fillInput(this.lastNameInput, lastName);
+  }
+
+  /**
+   * @description This method fills the phone number input field.
+   * @param {Number} phoneNumber 
+   */
+  async enterPhoneNumber(phoneNumber) {
+    console.log("Entering phone number:", phoneNumber);
+    await this.fillInput(this.phoneNumberInput, phoneNumber);
+  }
+
+  /**
+   * @description This method fills the address line 1 input field.
+   * @param {String} addressLine1 
+   */
+  async enterAddressLine1(addressLine1) {
+    console.log("Entering address line 1:", addressLine1);
+    await this.fillInput(this.addressline1Input, addressLine1);
+  }
+
+  /**
+   * @description This method fills the town or city input field.
+   * @param {String} townOrCity 
+   */
+  async enterTownOrCity(townOrCity) {
+    console.log("Entering town or city:", townOrCity);
+    await this.fillInput(this.townOrCityInput, townOrCity);
+  }
+
+  /**
+   * @description This method clicks the continue payment button to proceed with the payment process.
+   */
+  async clickContinuePaymentButton() {
+    console.log("Clicking the 'Continue Payment' button");
+    await this.clickElement(this.continuePaymentButton);
+  }
+
+  /**
+   * @description This method fills the shipping details and continues to payment.
+   * @param {String} firstName
+   * @param {String} lastName
+   * @param {Number} phoneNumber
+   * @param {String} addressLine1
+   * @param {String} townOrCity 
+   */
+  async fillShippingDetailsAndContinuePayment({firstName, lastName, phoneNumber, addressLine1, townOrCity}) {
+    console.log("Filling shipping details and continuing to payment");
+    await this.enterFirstName(firstName);
+    await this.enterLastName(lastName);
+    await this.enterPhoneNumber(phoneNumber);
+    await this.enterAddressLine1(addressLine1);
+    await this.enterTownOrCity(townOrCity);
+    await this.clickContinuePaymentButton();
   }
 
   // Validations

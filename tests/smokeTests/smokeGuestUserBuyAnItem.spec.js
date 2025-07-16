@@ -51,6 +51,15 @@ test.describe("End2end: Guest user buys an item", () => {
     console.log('Then the user should be redirected to the "Fulfillment Options" page');
     await pages.fullfillmentOptionsPage.validateFulfillmentOptionsPage(pages.fullfillmentOptionsPage.page);
     await pages.fullfillmentOptionsPage.searchAndEnterPostCodeAndContinueAsGuest("EC1A 1BB");
+
+    console.log('When the user fills in the shipping details and continues to payment');
+    await pages.fullfillmentOptionsPage.fillShippingDetailsAndContinuePayment({
+      firstName: Constants.GUEST_USER_FIRST_NAME,
+      lastName: Constants.GUEST_USER_LAST_NAME,
+      phoneNumber: Constants.GUEST_USER_PHONE_NUMBER,
+      addressLine1: Constants.GUEST_USER_ADDRESS_LINE_1,
+      townOrCity: Constants.GUEST_USER_TOWN_OR_CITY
+    });
   
   });
 });
