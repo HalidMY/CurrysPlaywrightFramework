@@ -10,6 +10,9 @@ export default class SearchResultsPage extends BasePage {
     this.addToCartButtons = page.locator('[class="addToCartActionButton"]');
     this.addedToBasketMessage = page.locator("#addToBasketModalLabel");
     this.goToBasketButton = page.locator('a[class$="goto-basket"]');
+    this.continueShoppingButton = page.locator('[title="Continue shopping"]');
+    this.searchBar = page.locator('[class*="search-monile"] #Search');
+    this.searchButton = page.locator('[class*="search-monile"] button[type="submit"]');
   }
 
   // Actions
@@ -31,6 +34,24 @@ export default class SearchResultsPage extends BasePage {
   async clickGoToBasketButton() {
     console.log("Clicking the 'Go to Basket' button");
     await this.clickElement(this.goToBasketButton);
+  }
+
+  /**
+   * @description This method clicks the 'Continue Shopping' button on the search results page.
+   */
+  async clickContinueShoppingButton() {
+    console.log("Clicking the 'Continue Shopping' button");
+    await this.clickElement(this.continueShoppingButton);
+  }
+
+  /**
+   * @description This method searches for an item using the search bar.
+   * @param {string} itemName - The name of the item to search for.
+   */
+  async searchForItemFromSRP(itemName) {
+    console.log(`Searching for item: ${itemName}`);
+    await this.fillInput(this.searchBar, itemName);
+    await this.clickElement(this.searchButton);
   }
 
   // Validations
