@@ -45,8 +45,10 @@ test.describe("End2end: Guest user adds an item and then removes the item from b
         console.log('When the user clicks remove item button');
         await pages.yourbasketPage.clickRemoveItemButton();
         await pages.yourbasketPage.validateRemoveItemModalIsDisplayed();
+        await pages.yourbasketPage.clickConfirmRemoveItemButton();
 
-
+        console.log('Then the user should see the empty cart text');
+        await pages.yourbasketPage.validateEmptyCartTextIsDisplayed();
 
         
     });

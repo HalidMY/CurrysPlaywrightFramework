@@ -16,6 +16,7 @@ export default class YourBasketPage extends BasePage {
     this.removeItemButton = page.locator('[class$="removeLinkCart"]>a');
     this.removeItemModal = page.locator('#removeProductLineItemModal');
     this.confirmRemoveItemButton = page.locator('[class$="confirmation-btn"]');
+    this.emptyCartText = page.locator('[class$="empty-cart-heading-msg"]');
   }
 
   // Actions
@@ -44,6 +45,14 @@ export default class YourBasketPage extends BasePage {
   async clickRemoveItemButton() {
     console.log("Clicking the 'Remove Item' button");
     await this.clickElement(this.removeItemButton);
+  }
+
+  /**
+   * @description This method clicks the 'Confirm Remove Item' button in the remove item modal.
+   */
+  async clickConfirmRemoveItemButton() {
+    console.log("Clicking the 'Confirm Remove Item' button");
+    await this.clickElement(this.confirmRemoveItemButton);
   }
 
 
@@ -84,6 +93,7 @@ export default class YourBasketPage extends BasePage {
 
   /**
    * @description This method confirms the remove item modal is displayed.
+   * @return {Promise<boolean>} - Returns true if the remove item modal is displayed, otherwise false.
    */
   async validateRemoveItemModalIsDisplayed() {
     console.log("Validating that the remove item modal is displayed");
@@ -95,6 +105,23 @@ export default class YourBasketPage extends BasePage {
         console.error("Remove item modal is not displayed.");
         return false;
       }
-    })
+    });
+  }
+
+  /**
+   * @description This method validates that the empty cart text is displayed when the basket is empty.
+   * @return {Promise<boolean>} - Returns true if the empty cart text is displayed, otherwise false.
+   */
+  async validateEmptyCartTextIsDisplayed() {
+    console.log("Validating that the empty cart text is displayed");
+    return await this.emptyCartText.isVisible().then((isVisible) => {
+      if (isVisible) {
+        console.log("Empty cart text is displayed.");
+        return true;
+      } else {
+        console.error("Empty cart text is not displayed.");
+        return false;
+      }
+    });
   }
 }
